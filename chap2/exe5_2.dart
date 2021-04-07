@@ -1,7 +1,7 @@
 void main() {
-  Car bmw = Car(320, 100000, 'BMW');
-  Car toyota = Car(250, 70000, 'TOYOTA');
-  Car ford = Car(200, 80000, 'FORD');
+  Car bmw = new Car(320, 100000, 'BMW');
+  Car toyota = new Car(250, 70000, 'TOYOTA');
+  Car ford = new Car(200, 80000, 'FORD');
 
   bmw.saleCar();
   bmw.saleCar();
@@ -11,17 +11,17 @@ void main() {
 
 
 class Car {
-  int maxSpeed;
-  num price;
-  String name;
+  late int maxSpeed;
+  late double price;
+  late String name;
 
-  Car(int maxSpeed, num price, String name) {
-    this.maxSpeed = maxSpeed;
+  Car(int maxSpeed, double price, String name) {
+      this.maxSpeed = maxSpeed;
     this.price = price;
     this.name = name;
   }
-
-  int saleCar() {
+// the return type of saleCar() in the book is int but i changed it as double because of error. 
+  double saleCar() {
     price = price * 0.9;
     return price;
   }
