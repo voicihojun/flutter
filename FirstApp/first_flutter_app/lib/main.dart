@@ -1,13 +1,28 @@
+// import 'dart:html';
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    print('createState');
+    return _MyApp();
+  }
+}
+
+class _MyApp extends State<MyApp> {
   // This widget is the root of your application.
+  var switchValue = false;
+  String test = 'hello';
+  Color _color = Colors.blue;
   @override
   Widget build(BuildContext context) {
+    print('build');
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -20,10 +35,43 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+      darkTheme: ThemeData.light(),
+      home: Scaffold (
+        body: Center (
+          child: RaisedButton(
+            child: Text('$test'),
+            color: _color,
+            onPressed: () {
+              if(_color == Colors.blue) {
+                setState(() {
+                  test = 'flutter';
+                  _color = Colors.amber;
+                });
+              } else {
+                setState(() {
+                  test = 'flutter';
+                  _color = Colors.blue;
+                });
+              }
+            }
+          )
+        ),
+      ));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('initState');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('didChangeDependencies');
   }
 }
 
